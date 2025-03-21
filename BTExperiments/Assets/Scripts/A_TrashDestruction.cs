@@ -26,6 +26,8 @@ namespace NodeCanvas.Tasks.Actions {
 			
 			float distance = Vector3.Distance(agent.transform.position, closestTrash.value.transform.position);
 			if (distance <= _stopDistance){
+				
+				UnityEngine.Object.Destroy(closestTrash.value);
 				EndAction(true);
 			}
 
