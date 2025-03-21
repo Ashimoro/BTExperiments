@@ -12,12 +12,12 @@ namespace NodeCanvas.Tasks.Actions {
 		public float maxRoamRadius = 10f; // Maximum distance of a circle
 		private bool _roamWaypointSet = false; //Boolian that I will use to check if agent got close to the waypoint or no
 
-		private float _minimalDistance = 1.5f;
+		private float _minimalDistance = 1.5f; //Stop distance
 
 		protected override void OnExecute() {
 
 		if (_roamWaypointSet == false){
-			Vector2 randomCircle = Random.insideUnitCircle * maxRoamRadius;
+			Vector2 randomCircle = Random.insideUnitCircle * maxRoamRadius; //finding random point in a circle
 			Vector3 randomPoint = agent.transform.position + new Vector3 (randomCircle.x,0,randomCircle.y);
 
 			agent.SetDestination(randomPoint);
@@ -27,8 +27,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		if (_roamWaypointSet == true){
 			if (agent.remainingDistance <= _minimalDistance) {
-				_roamWaypointSet = false;
-				
+				EndAction(true);
 			}
 
 		}

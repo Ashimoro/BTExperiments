@@ -21,7 +21,7 @@ public class trashSpawner : MonoBehaviour
     {
         
         if (_currentTrashAmmount <= maxTrashSpawned - 1) {
-
+            
             Spawner();
 
         }

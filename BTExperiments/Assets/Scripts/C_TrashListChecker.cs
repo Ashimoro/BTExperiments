@@ -29,11 +29,11 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Called once per frame while the condition is active.
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
-			GameObject[] trashSearcher = GameObject.FindGameObjectsWithTag("Trash");
-			trash.value.Clear();
+			GameObject[] trashSearcher = GameObject.FindGameObjectsWithTag("Trash"); //finding all object with certain tag
+			trash.value.Clear(); //clearing list to not overflow it (because this script looking for object every frame, this is required, to not have 100 coppies of the same object)
 
 			foreach (GameObject obj in trashSearcher) {
-				trash.value.Add(obj);
+				trash.value.Add(obj); //adding all object with the tag to the list
 			}
 
 			return trash.value.Count > 0;
