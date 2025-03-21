@@ -9,20 +9,20 @@ namespace NodeCanvas.Tasks.Actions {
 	public class A_Roam : ActionTask<NavMeshAgent> {
 
 		public float maxRoamRadius = 10f; // Maximum distance of a circle
-		private bool roamWaypointSet = false; //Boolian that I will use to check if agent got close to the waypoint or no
+		private bool _roamWaypointSet = false; //Boolian that I will use to check if agent got close to the waypoint or no
 
 		protected override void OnExecute() {
 
-		if (roamWaypointSet == false){
+		if (_roamWaypointSet == false){
 			Vector2 randomCircle = Random.insideUnitCircle * maxRoamRadius;
 			Vector3 randomPoint = agent.transform.position + new Vector3 (randomCircle.x,0,randomCircle.y);
 
 			agent.SetDestination(randomPoint);
 			
-			roamWaypointSet = true;
+			_roamWaypointSet = true;
 		}
 
-		if (roamWaypointSet == true){
+		if (_roamWaypointSet == true){
 			EndAction(true);
 
 		}
