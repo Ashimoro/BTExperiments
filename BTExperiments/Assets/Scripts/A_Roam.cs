@@ -1,4 +1,5 @@
 using NodeCanvas.Framework;
+using ParadoxNotion;
 using ParadoxNotion.Design;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,6 +11,8 @@ namespace NodeCanvas.Tasks.Actions {
 
 		public float maxRoamRadius = 10f; // Maximum distance of a circle
 		private bool _roamWaypointSet = false; //Boolian that I will use to check if agent got close to the waypoint or no
+
+		private float _minimalDistance = 1.5f;
 
 		protected override void OnExecute() {
 
@@ -23,7 +26,10 @@ namespace NodeCanvas.Tasks.Actions {
 		}
 
 		if (_roamWaypointSet == true){
-			EndAction(true);
+			if (agent.remainingDistance <= _minimalDistance) {
+				_roamWaypointSet = false;
+				
+			}
 
 		}
 		}
@@ -31,6 +37,8 @@ namespace NodeCanvas.Tasks.Actions {
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			
+
+
 		}
 
 		//Called when the task is disabled.
