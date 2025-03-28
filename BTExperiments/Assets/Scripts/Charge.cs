@@ -19,7 +19,7 @@ namespace NodeCanvas.Tasks.Actions {
 		private bool _backComplete;
 
 
-		private float _distanceThreshold = 0.1f;
+		private float _distanceThreshold = 0.5f;
 
 		//This is called once each time the task is enabled.
 		//Call EndAction() to mark the action as finished, either in success or failure.
@@ -41,23 +41,25 @@ namespace NodeCanvas.Tasks.Actions {
 		protected override void OnUpdate() {
 			
 			if (!_backComplete) {
-				agent.transform.position = Vector3.MoveTowards(agent.transform.position, _backPosition, movementSpeed.value / 2 * Time.deltaTime);
+				agent.transform.position = Vector3.MoveTowards(agent.transform.position, _backPosition, movementSpeed.value / 5 * Time.deltaTime);
 
 					if(Vector3.Distance(agent.transform.position, _backPosition) < _distanceThreshold){
 						_backComplete = true;
-					}
+					} 
 
+			} 
+
+			
 			if (playerLocation.value != null && _backComplete == true){
 				Vector3 _dashTarget = playerLocation.value.transform.position;
 
 				agent.transform.position = Vector3.MoveTowards(agent.transform.position, _dashTarget, movementSpeed.value * Time.deltaTime);
 
-					if(Vector3.Distance(agent.transform.position, _dashTarget) < _distanceThreshold){
+					if(Vector3.Distance(agent.transform.position, _dashTarget) < _distanceThreshold + 0.6){
 						EndAction(true);
 					}
 			}
 
-			} 
 			
 
 
