@@ -17,9 +17,9 @@ namespace NodeCanvas.Tasks.Actions {
 		private float _backDistance = 2f;
 		private Vector3 _backPosition;
 		private bool _backComplete;
-
-
 		private float _distanceThreshold = 0.5f;
+
+		private Vector3 _dashTarget;
 
 		//This is called once each time the task is enabled.
 		//Call EndAction() to mark the action as finished, either in success or failure.
@@ -30,11 +30,12 @@ namespace NodeCanvas.Tasks.Actions {
 
 			Vector3 rotationDirection = playerLocation.value.transform.position - agent.transform.position;
 			rotationDirection.y = 0;
-			agent.transform.rotation = Quaternion.LookRotation(rotationDirection);
+			agent.transform.rotation = Quaternion.LookRotation(rotationDirection); //Поворачиваем рыцаря по направлению к игроку. Это находится тут а не в 
 
 			_backComplete = false;
 			_backPosition = agent.transform.position - agent.transform.forward * _backDistance;
 
+			_dashTarget = playerLocation.value.transform.position;
 		}
 
 		//Called once per frame while the action is active.
@@ -51,8 +52,6 @@ namespace NodeCanvas.Tasks.Actions {
 
 			
 			if (playerLocation.value != null && _backComplete == true){
-				Vector3 _dashTarget = playerLocation.value.transform.position;
-
 				agent.transform.position = Vector3.MoveTowards(agent.transform.position, _dashTarget, movementSpeed.value * Time.deltaTime);
 
 					if(Vector3.Distance(agent.transform.position, _dashTarget) < _distanceThreshold + 0.6){
