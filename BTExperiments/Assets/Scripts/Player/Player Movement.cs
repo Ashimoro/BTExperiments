@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackTime = 0.1f;
     private float _knockbackForce = 10f;
     
-    
+
     public float dashDistance = 3f;
     public float dashDelay = 2;
     private float _dashTimer = 0f;
@@ -105,23 +105,21 @@ public class PlayerMovement : MonoBehaviour
 
             if(enemy != null){
 
-               // _rb.isKinematic = false;
                 Vector3 knockbackDistance = transform.position - enemy.transform.position;
                 knockbackDistance.y = 0;
                 knockbackDistance = knockbackDistance.normalized * _knockbackForce;
                 _rb.AddForce(knockbackDistance, ForceMode.Impulse);
                 StartCoroutine(knockbackTimer());
                 
-            
             }
         }        
     }
 
     private IEnumerator knockbackTimer(){
 
-            yield return new WaitForSeconds(knockbackTime);
-            _rb.velocity = Vector3.zero;
-            //_rb.isKinematic = true;
+        yield return new WaitForSeconds(knockbackTime);
+        _rb.velocity = Vector3.zero;
+
     }
 
 }
