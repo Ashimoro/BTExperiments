@@ -271,7 +271,7 @@ MonoBehaviour:
   playerHP: 3
   jumpForce: 5
   speed: 5
-  knockbackTime: 0.4
+  knockbackTime: 0.5
   dashDistance: 6
   dashDelay: 2
 --- !u!1 &114863064
