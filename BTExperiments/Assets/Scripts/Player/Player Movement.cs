@@ -7,11 +7,16 @@ public class PlayerMovement : MonoBehaviour
     
     public float speed = 5f;
     public float jumpForce = 5f;
+    public float playerHP = 3;
+    public float knockbackTime = 0.1f;
     
     private float _rotationSpeed = 720f;
     private Rigidbody _rb;
     private bool _isGrounded;
     private Vector3 _movementDirection;
+
+
+    private float _knockbackForce = 10f;
     
         void Start()
     {
@@ -59,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
             _isGrounded = true;
 
         }
+
     }
 
 
@@ -70,4 +76,33 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Knight")){
+
+            playerHP--;
+            Rigidbody enemy = other.GetComponent<Rigidbody>();
+
+            if(enemy != null){
+
+               // _rb.isKinematic = false;
+                Vector3 knockbackDistance = transform.position - enemy.transform.position;
+                knockbackDistance.y = 0;
+                knockbackDistance = knockbackDistance.normalized * _knockbackForce;
+                _rb.AddForce(knockbackDistance, ForceMode.Impulse);
+                StartCoroutine(knockbackTimer());
+                
+            
+            }
+        }        
+    }
+
+    private IEnumerator knockbackTimer(){
+
+            yield return new WaitForSeconds(knockbackTime);
+            _rb.velocity = Vector3.zero;
+            //_rb.isKinematic = true;
+    }
+
 }

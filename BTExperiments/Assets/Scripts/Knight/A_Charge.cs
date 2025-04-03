@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class Charge : ActionTask {
+	public class A_Charge : ActionTask {
 
 			// BBParameters:
 		public BBParameter<GameObject> playerLocation;
@@ -24,10 +24,13 @@ namespace NodeCanvas.Tasks.Actions {
 
 			// Misc:
 		private float _distanceThreshold = 0.5f;
+		private float _groundY;
 		
 		protected override void OnExecute() {
 			
 			fireEyes.value.SetActive(true); // Turn on the fiery eyes
+
+			_groundY = agent.transform.position.y; //Y position fixation (to not go uderground)
 
 			Vector3 rotationDirection = playerLocation.value.transform.position - agent.transform.position; // Set the position where to turn
 			rotationDirection.y = 0; // Make the rotation ignore the y coordinate. This is just in case
@@ -43,7 +46,9 @@ namespace NodeCanvas.Tasks.Actions {
 		protected override void OnUpdate() {
 			
 			if (!_backComplete) {
-				agent.transform.position = Vector3.MoveTowards(agent.transform.position, _backPosition, movementSpeed.value / 5 * Time.deltaTime); // Slowly pulling back
+				Vector3 newPosition = Vector3.MoveTowards(agent.transform.position, _backPosition, movementSpeed.value / 5 * Time.deltaTime); // Slowly pulling back
+
+				agent.transform.position = new Vector3(newPosition.x, _groundY, newPosition.z);
 
 					if(Vector3.Distance(agent.transform.position, _backPosition) < _distanceThreshold){ // Check the distance to the charge point
 						_backComplete = true;
@@ -53,7 +58,8 @@ namespace NodeCanvas.Tasks.Actions {
 
 			
 			if (playerLocation.value != null && _backComplete == true){
-				agent.transform.position = Vector3.MoveTowards(agent.transform.position, _dashTarget, movementSpeed.value * Time.deltaTime); 
+				Vector3 newPosition = Vector3.MoveTowards(agent.transform.position, _dashTarget, movementSpeed.value * Time.deltaTime); 
+				agent.transform.position = new Vector3(newPosition.x, _groundY, newPosition.z);
 				// ^^ Move towards the player's last position ^^
 
 					if(Vector3.Distance(agent.transform.position, _dashTarget) < _distanceThreshold + 0.6){ // Distance check for stopping + 0.6, due to the size of the player model
