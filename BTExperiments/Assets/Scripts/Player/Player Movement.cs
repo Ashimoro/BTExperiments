@@ -5,18 +5,26 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     
-    public float speed = 5f;
-    public float jumpForce = 5f;
     public float playerHP = 3;
-    public float knockbackTime = 0.1f;
     
-    private float _rotationSpeed = 720f;
-    private Rigidbody _rb;
+
+    public float jumpForce = 5f;
     private bool _isGrounded;
+
+
+    public float speed = 5f;
+    private float _rotationSpeed = 720f;
     private Vector3 _movementDirection;
+    private Rigidbody _rb;
 
 
+    public float knockbackTime = 0.1f;
     private float _knockbackForce = 10f;
+    
+    
+    public float dashDistance = 3f;
+    public float dashDelay = 2;
+    private float _dashTimer = 0f;
     
         void Start()
     {
@@ -38,6 +46,17 @@ public class PlayerMovement : MonoBehaviour
 
             _rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse); // Player jumping
 
+        }
+
+    
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _dashTimer <= 0){
+            Vector3 dashPosition = _movementDirection * dashDistance;
+            _rb.AddForce(dashPosition, ForceMode.Impulse);
+            _dashTimer = dashDelay;
+        }
+
+        if (_dashTimer >= 0) {
+            _dashTimer -= Time.deltaTime;
         }
 
     }
