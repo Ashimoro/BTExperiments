@@ -133,9 +133,9 @@ GameObject:
   - component: {fileID: 21585454}
   - component: {fileID: 21585453}
   - component: {fileID: 21585452}
+  - component: {fileID: 21585455}
   - component: {fileID: 21585451}
   - component: {fileID: 21585450}
-  - component: {fileID: 21585455}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -268,10 +268,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caee4b4f4d839c044b1956050a4a48ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  jumpForce: 5
   playerHP: 3
+  jumpForce: 5
+  speed: 5
   knockbackTime: 0.4
+  dashDistance: 6
+  dashDelay: 2
 --- !u!1 &114863064
 GameObject:
   m_ObjectHideFlags: 0
