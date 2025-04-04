@@ -7,11 +7,12 @@ using UnityEngine.AI;
 
 namespace NodeCanvas.Tasks.Actions {
 
-	public class A_Charge : ActionTask {
+	public class A_Charge : ActionTask <NavMeshAgent> {
 
 			// BBParameters:
 		public BBParameter<GameObject> playerLocation;
 		public BBParameter<GameObject> fireEyes;
+		public BBParameter<GameObject> normalEyes;
 		public BBParameter<float> movementSpeed;
 
 			// Everything related to back steps before charge:
@@ -28,13 +29,16 @@ namespace NodeCanvas.Tasks.Actions {
 		
 		protected override void OnExecute() {
 			
+			agent.velocity = Vector3.zero;
+
 			fireEyes.value.SetActive(true); // Turn on the fiery eyes
+			normalEyes.value.SetActive(false);
 
 			_groundY = agent.transform.position.y; //Y position fixation (to not go uderground)
 
-			Vector3 rotationDirection = playerLocation.value.transform.position - agent.transform.position; // Set the position where to turn
-			rotationDirection.y = 0; // Make the rotation ignore the y coordinate. This is just in case
-			agent.transform.rotation = Quaternion.LookRotation(rotationDirection); // Turn the knight towards the player.
+			Vector3 rotationDIrection = playerLocation.value.transform.position - agent.transform.position; // Set the position where to turn
+			rotationDIrection.y = 0; // Make the rotation ignore the y coordinate. This is just in case
+			agent.transform.rotation = Quaternion.LookRotation(rotationDIrection); // Turn the knight towards the player.
 
 			_backComplete = false; // This must be reset for the charge attack to work properly
 			_backPosition = agent.transform.position - agent.transform.forward * _backDistance; // The point to which the knight will retreat before the charge attack.
@@ -44,7 +48,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
-			
+
 			if (!_backComplete) {
 				Vector3 newPosition = Vector3.MoveTowards(agent.transform.position, _backPosition, movementSpeed.value / 5 * Time.deltaTime); // Slowly pulling back
 
@@ -66,16 +70,13 @@ namespace NodeCanvas.Tasks.Actions {
 						EndAction(true);
 					}
 			}
-
-			
-
-
 		}
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
 			
 			fireEyes.value.SetActive(false);
+			normalEyes.value.SetActive(true);
 
 		}
 
