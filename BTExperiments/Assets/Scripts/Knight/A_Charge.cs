@@ -1,6 +1,7 @@
 using NodeCanvas.Framework;
 using ParadoxNotion;
 using ParadoxNotion.Design;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -26,8 +27,13 @@ namespace NodeCanvas.Tasks.Actions {
 			// Misc:
 		private float _distanceThreshold = 0.5f;
 		private float _groundY;
+
+		private float _timer = 0f;
+		private float _maxTimer = 3f;
 		
 		protected override void OnExecute() {
+
+			_timer = 0f;
 			
 			agent.velocity = Vector3.zero;
 
@@ -58,6 +64,11 @@ namespace NodeCanvas.Tasks.Actions {
 						_backComplete = true;
 					} 
 
+					_timer += Time.deltaTime;
+					if (_timer >= _maxTimer){
+					EndAction(true);
+			}
+
 			} 
 
 			
@@ -69,7 +80,15 @@ namespace NodeCanvas.Tasks.Actions {
 					if(Vector3.Distance(agent.transform.position, _dashTarget) < _distanceThreshold + 0.6){ // Distance check for stopping + 0.6, due to the size of the player model
 						EndAction(true);
 					}
+
+					_timer += Time.deltaTime;
+					if (_timer >= _maxTimer){
+					EndAction(true);
 			}
+		}
+
+			
+
 		}
 
 		//Called when the task is disabled.
@@ -78,11 +97,6 @@ namespace NodeCanvas.Tasks.Actions {
 			fireEyes.value.SetActive(false);
 			normalEyes.value.SetActive(true);
 
-		}
-
-		//Called when the task is paused.
-		protected override void OnPause() {
-			
 		}
 	}
 }

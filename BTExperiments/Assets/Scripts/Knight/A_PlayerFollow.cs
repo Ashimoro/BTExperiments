@@ -37,9 +37,9 @@ namespace NodeCanvas.Tasks.Actions {
 			_timer += Time.deltaTime;
 			if (_timer >= _maxTimer){
 				EndAction(true);
+		}
 			}
 
-		}
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
