@@ -6,9 +6,10 @@ public class ObjectDestruction : MonoBehaviour
 {
     void OnCollisionEnter(Collision collision)
     {
-
+        
 		if (collision.gameObject.CompareTag("Obstacles")){
-            UnityEngine.Object.Destroy(collision.gameObject);
+
+            Destroy(collision.gameObject);
 
         }
 
