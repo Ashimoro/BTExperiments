@@ -7,6 +7,8 @@ TagManager:
   - Knight
   - Ground
   - Obstacles
+  - Trash
+  - Necromancer
   layers:
   - Default
   - TransparentFX
