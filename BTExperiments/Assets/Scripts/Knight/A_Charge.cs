@@ -98,5 +98,6 @@ namespace NodeCanvas.Tasks.Actions {
 			normalEyes.value.SetActive(true);
 
 		}
+
 	}
 }

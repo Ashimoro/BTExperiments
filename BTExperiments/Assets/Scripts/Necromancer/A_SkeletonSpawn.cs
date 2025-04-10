@@ -63,10 +63,5 @@ namespace NodeCanvas.Tasks.Actions {
 			particlesController.value.SetActive(false);
 			
 		}
-
-		//Called when the task is paused.
-		protected override void OnPause() {
-			
-		}
 	}
 }
