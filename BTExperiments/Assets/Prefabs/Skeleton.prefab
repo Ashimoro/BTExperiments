@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6496966087063091783}
   m_Layer: 0
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,4 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2af0546ec29f9945b2aea7dc7be0f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLiveTime: 3
+  maxLiveTime: 8

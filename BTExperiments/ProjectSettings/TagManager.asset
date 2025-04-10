@@ -9,6 +9,7 @@ TagManager:
   - Obstacles
   - Trash
   - Necromancer
+  - Skeleton
   layers:
   - Default
   - TransparentFX
