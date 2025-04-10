@@ -28,7 +28,7 @@ namespace NodeCanvas.Tasks.Actions {
 		protected override void OnUpdate() {
 			
 			_timer += Time.deltaTime;
-			Vector3 spawnPosition = agent.transform.position + Vector3.forward;
+			Vector3 spawnPosition = agent.transform.position + agent.forward;
 
 			if (_timer >= spawnDelay.value) {
 				GameObject missileBolt = UnityEngine.Object.Instantiate(missilePrefab.value, spawnPosition, Quaternion.identity);

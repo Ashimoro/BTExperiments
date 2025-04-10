@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9196806573985520320}
   - component: {fileID: 3606058318328865576}
   - component: {fileID: 4355459496608881218}
+  - component: {fileID: 6468225196215006680}
   m_Layer: 0
   m_Name: Missile
   m_TagString: Untagged
@@ -135,3 +136,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &6468225196215006680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8353574073213950175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7538370893f39d1428ccbcc554786a8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLiveTime: 9
+  speed: 5
+  rotationSpeed: 5
+  player: {fileID: 0}
