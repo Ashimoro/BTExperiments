@@ -3042,7 +3042,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":707.0,"y":119.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_action":{"$type":"NodeCanvas.Tasks.Actions.A_Running"},"_position":{"x":641.0,"y":302.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"1"},{"_action":{"skeletonPrefab":{"_value":1},"particlesController":{"_value":2},"skeletonList":{"_name":"Enemies","_targetVariableID":"4d47f895-b741-4cf7-bfd6-f8a156caef3e"},"$type":"NodeCanvas.Tasks.Actions.A_SkeletonSpawn"},"_position":{"x":760.0,"y":304.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_action":{"target":{"_name":"Buff
+  _boundGraphSerialization: '{"type":"NodeCanvas.BehaviourTrees.BehaviourTree","nodes":[{"_position":{"x":707.0,"y":119.0},"$type":"NodeCanvas.BehaviourTrees.Sequencer","$id":"0"},{"_action":{"$type":"NodeCanvas.Tasks.Actions.A_Running"},"_position":{"x":641.0,"y":302.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"1"},{"_action":{"skeletonPrefab":{"_value":1},"particlesController":{"_value":2},"skeletonList":{"_name":"Enemies","_targetVariableID":"4d47f895-b741-4cf7-bfd6-f8a156caef3e"},"$type":"NodeCanvas.Tasks.Actions.A_SkeletonSpawn"},"_position":{"x":759.0,"y":304.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"2"},{"_action":{"target":{"_name":"Buff
     Target","_targetVariableID":"c5377418-5026-448a-8e47-7eec6a148a95"},"enemiesList":{"_name":"Enemies","_targetVariableID":"4d47f895-b741-4cf7-bfd6-f8a156caef3e"},"$type":"NodeCanvas.Tasks.Actions.A_Buff"},"_position":{"x":922.0,"y":304.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"3"},{"_action":{"missilePrefab":{"_value":3},"spawnDelay":{"_value":1.0},"$type":"NodeCanvas.Tasks.Actions.A_MagickMissile"},"_position":{"x":1029.0,"y":306.0},"$type":"NodeCanvas.BehaviourTrees.ActionNode","$id":"4"}],"connections":[{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"},{"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"4"},"$type":"NodeCanvas.BehaviourTrees.BTConnection"}],"canvasGroups":[],"localBlackboard":{"_variables":{}},"derivedData":{"repeat":true,"$type":"NodeCanvas.BehaviourTrees.BehaviourTree+DerivedSerializationData"}}'
   _boundGraphObjectReferences:
   - {fileID: 0}
@@ -13421,68 +13421,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 425523971}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &3879477197435595095
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.93
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5070229623369884087, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8353574073213950175, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
-      propertyPath: m_Name
-      value: Missile
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b0808e9e9e7fd5b48a6d47da8cc6927a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 3879477197435595095}
   - {fileID: 1227934208}
   - {fileID: 972604945}
   - {fileID: 742113924}

@@ -16,10 +16,11 @@ public class PlayerMovement : MonoBehaviour
     private float _rotationSpeed = 720f;
     private Vector3 _movementDirection;
     private Rigidbody _rb;
+    private bool _canControl;
 
 
     public float knockbackTime = 0.1f;
-    private float _knockbackForce = 10f;
+    public float knockbackForce = 10f;
     
 
     public float dashDistance = 3f;
@@ -29,12 +30,14 @@ public class PlayerMovement : MonoBehaviour
         void Start()
     {
         _rb = GetComponent<Rigidbody>();
+        _canControl = true;
     }
 
 
     void Update()
     {
-        
+        if (_canControl) {
+
         float horizontaInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
@@ -59,6 +62,9 @@ public class PlayerMovement : MonoBehaviour
             _dashTimer -= Time.deltaTime;
         }
 
+        }
+
+
     }
 
 
@@ -80,10 +86,24 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground")){
 
-            _isGrounded = true;
-
+            _isGrounded = true;  
         }
 
+        if (collision.gameObject.CompareTag("Knight") || collision.gameObject.CompareTag("Skeleton")){
+            Debug.Log("123");
+            playerHP--;
+            Rigidbody enemy = collision.gameObject.GetComponent<Rigidbody>();
+
+            if(enemy != null){
+
+                Vector3 knockbackDistance = transform.position - enemy.transform.position;
+                knockbackDistance.y = 0;
+                knockbackDistance = knockbackDistance.normalized * knockbackForce;
+                _rb.AddForce(knockbackDistance, ForceMode.Impulse);
+                StartCoroutine(knockbackTimer());
+                
+            }
+        }    
     }
 
 
@@ -96,30 +116,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Knight")){
-
-            playerHP--;
-            Rigidbody enemy = other.GetComponent<Rigidbody>();
-
-            if(enemy != null){
-
-                Vector3 knockbackDistance = transform.position - enemy.transform.position;
-                knockbackDistance.y = 0;
-                knockbackDistance = knockbackDistance.normalized * _knockbackForce;
-                _rb.AddForce(knockbackDistance, ForceMode.Impulse);
-                StartCoroutine(knockbackTimer());
-                
-            }
-        }        
-    }
-
     private IEnumerator knockbackTimer(){
 
+        _canControl = false;
         yield return new WaitForSeconds(knockbackTime);
         _rb.velocity = Vector3.zero;
-
+        _canControl = true;
     }
 
 }

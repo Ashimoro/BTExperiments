@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MagicMissile : MonoBehaviour
 {
-    public float maxLiveTime = 9f;
+    public float maxLiveTime = 5f;
     public float speed;
-    public float rotationSpeed;
 
     private float _timer;
     private Vector3 _groundY;
@@ -17,11 +16,18 @@ public class MagicMissile : MonoBehaviour
         _groundY.y = transform.position.y;
 
         _player = GameObject.FindGameObjectWithTag("Player");
+
+        _timer = 0f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        _timer += Time.deltaTime;
+        if (_timer >= maxLiveTime){
+            Destroy(gameObject);
+        }
+
         Vector3 plyaerLocation = _player.transform.position + _player.transform.forward;
         
         
