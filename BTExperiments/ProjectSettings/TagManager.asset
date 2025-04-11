@@ -10,6 +10,7 @@ TagManager:
   - Trash
   - Necromancer
   - Skeleton
+  - Missile
   layers:
   - Default
   - TransparentFX

@@ -8,6 +8,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		public BBParameter<GameObject> missilePrefab;
 		public BBParameter<float> spawnDelay;
+		public GameObject effect;
 
 		private float _timer;
 
@@ -18,7 +19,7 @@ namespace NodeCanvas.Tasks.Actions {
 		protected override void OnExecute() {
 
 			_timer = 0f;
-
+			effect.SetActive(true);
 			
 
 
@@ -39,7 +40,7 @@ namespace NodeCanvas.Tasks.Actions {
 
 		//Called when the task is disabled.
 		protected override void OnStop() {
-			
+			effect.SetActive(false);
 		}
 
 	}

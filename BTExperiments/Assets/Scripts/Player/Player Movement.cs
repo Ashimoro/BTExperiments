@@ -89,9 +89,8 @@ public class PlayerMovement : MonoBehaviour
             _isGrounded = true;  
         }
 
-        if (collision.gameObject.CompareTag("Knight") || collision.gameObject.CompareTag("Skeleton")){
+        if (collision.gameObject.CompareTag("Knight") || collision.gameObject.CompareTag("Skeleton") || collision.gameObject.CompareTag("Missile")){
             Debug.Log("123");
-            playerHP--;
             Rigidbody enemy = collision.gameObject.GetComponent<Rigidbody>();
 
             if(enemy != null){
@@ -100,6 +99,11 @@ public class PlayerMovement : MonoBehaviour
                 knockbackDistance.y = 0;
                 knockbackDistance = knockbackDistance.normalized * knockbackForce;
                 _rb.AddForce(knockbackDistance, ForceMode.Impulse);
+
+                    if(collision.gameObject.CompareTag("Skeleton") || collision.gameObject.CompareTag("Missile")){
+                        Destroy(collision.gameObject);
+                    }
+
                 StartCoroutine(knockbackTimer());
                 
             }
@@ -120,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
         _canControl = false;
         yield return new WaitForSeconds(knockbackTime);
+        playerHP--;
         _rb.velocity = Vector3.zero;
         _canControl = true;
     }
