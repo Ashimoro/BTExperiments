@@ -12,20 +12,19 @@ namespace NodeCanvas.Tasks.Actions {
 		
 		public BBParameter<GameObject> target;
 		public BBParameter<List<GameObject>> enemiesList;
+		
 		public GameObject effectSelf;
 		public ParticleSystem effectTarget;
+
+
 		public float castTime = 1f;
 		private float _timer;
 
-
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
 
 			_timer = 0f;
 
-			effectSelf.SetActive(true);
+			effectSelf.SetActive(true); // Activating glowing effect
 
 			
 				
@@ -40,14 +39,17 @@ namespace NodeCanvas.Tasks.Actions {
 			}
 
         }
-		protected override void OnStop() {
-			float bestDistance = Mathf.Infinity;
+
+		// everything is supposed to be in "on stop", because I want to make a cast time first. This is possible to do everything inside of the timer as well, but I didn't like how it looks
+		protected override void OnStop() { 
+			float bestDistance = Mathf.Infinity; // Selecting maximum possible distance for it to be rewriten when the script will scan first enemy
 			GameObject buffTarget = null;
 
-			GameObject[] skeletonScanner = GameObject.FindGameObjectsWithTag("Skeleton");
-			GameObject[] knightScanner = GameObject.FindGameObjectsWithTag("Knight");
+			GameObject[] skeletonScanner = GameObject.FindGameObjectsWithTag("Skeleton"); // finding all skeletons on the field
+			GameObject[] knightScanner = GameObject.FindGameObjectsWithTag("Knight"); // findinh a knight on the field
 			enemiesList.value.Clear();
 
+			// adding both of them to the one list
 			foreach(GameObject obj in skeletonScanner) {
 				enemiesList.value.Add(obj);
 			}
@@ -57,7 +59,7 @@ namespace NodeCanvas.Tasks.Actions {
 			}
 
 
-
+			// finding who is the closest to the necromancer
 			foreach (GameObject enemy in enemiesList.value) {
 				float currentDistance = Vector3.Distance(agent.position, enemy.transform.position);
 
@@ -69,13 +71,14 @@ namespace NodeCanvas.Tasks.Actions {
 
 				target.value = buffTarget;
 
+				// depending on who is closer, giving different speed boost and making a telegraphy over their head to show who is buffed
 				if (target.value.CompareTag("Knight")){
 					NavMeshAgent enemyNM = target.value.GetComponent<NavMeshAgent>();
 					enemyNM.speed = 8f;
 					
 					Vector3 offset = new Vector3(0,2,0);
-					ParticleSystem newEffect = GameObject.Instantiate(effectTarget, target.value.transform.position + offset,Quaternion.identity);
-					newEffect.transform.SetParent(target.value.transform);
+					ParticleSystem newEffect = GameObject.Instantiate(effectTarget, target.value.transform.position + offset,Quaternion.identity); // creating particle system on the field
+					newEffect.transform.SetParent(target.value.transform); // making a knight or skeleton a new parent for particle system to follow them
 					
 				}
 

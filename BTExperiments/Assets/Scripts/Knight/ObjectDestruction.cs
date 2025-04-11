@@ -7,13 +7,15 @@ using UnityEngine.AI;
 public class ObjectDestruction : MonoBehaviour
 {
 
+    // simple script to destroy the obstacles and recreate nav mesh every time when knight is coliding with something
+
     public GameObject ground;
     
     private NavMeshSurface _groundNM;
 
     void Start()
     {
-        _groundNM = ground.GetComponent<NavMeshSurface>();
+        _groundNM = ground.GetComponent<NavMeshSurface>(); // getting a navmesh component from the ground
     }
     void OnCollisionEnter(Collision collision)
     {
@@ -30,6 +32,6 @@ public class ObjectDestruction : MonoBehaviour
     private IEnumerator navMeshUpdate(){
 
         yield return new WaitForSeconds(0.1f);
-        _groundNM.BuildNavMesh();
+        _groundNM.BuildNavMesh(); // updating navmesh after small delay. This is required to avoid bugs
     }
 }

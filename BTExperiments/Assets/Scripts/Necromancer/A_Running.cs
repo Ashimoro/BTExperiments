@@ -8,27 +8,27 @@ namespace NodeCanvas.Tasks.Actions {
 
 	public class A_Running : ActionTask<NavMeshAgent> {
 
-		public float maxRunningTime = 3f;		
-
+		// Size of the field
 		private Vector3 _areaMin = new Vector3(-10, 0, -10);
         private Vector3 _areaMax = new Vector3(10, 0, 10);
+
+		// timer
+		public float maxRunningTime = 3f;		
 		private float _timer;
 
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
+
 		protected override void OnExecute() {
 			_timer = 0f;
 
-			float x = Random.Range(_areaMin.x, _areaMax.x);
+			float x = Random.Range(_areaMin.x, _areaMax.x); // calculating where to go every time script is activationg
 			float z = Random.Range(_areaMin.z, _areaMax.z);
 
-			Vector3 newWaypoint = new Vector3(x, 0, z);
+			Vector3 newWaypoint = new Vector3(x, 0, z); // fixating Y coordinate, for necromancer not to fly away
 
 			agent.SetDestination(newWaypoint);
 		}
 
-		//Called once per frame while the action is active.
+
 		protected override void OnUpdate() {
 			
 			_timer += Time.deltaTime;
@@ -40,9 +40,8 @@ namespace NodeCanvas.Tasks.Actions {
 
 		}
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
-			agent.velocity = Vector3.zero;
+			agent.velocity = Vector3.zero; // reseting velocity, for necromancer to slide
 			agent.ResetPath();
 		}
 

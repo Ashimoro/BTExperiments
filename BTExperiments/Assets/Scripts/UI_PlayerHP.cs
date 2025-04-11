@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class UI_PlayerHP : MonoBehaviour
 {
+
+    // script that is updating player hp in ui
+
     public GameObject player;
     public TMP_Text playerHPText;
     private PlayerMovement _playerHP;

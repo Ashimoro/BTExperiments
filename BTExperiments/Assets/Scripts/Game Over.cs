@@ -5,12 +5,17 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
+
+    // this script is related to both possible game end, death because of the enemy hits and win due to time out.
+
     public GameObject player;
+    private PlayerMovement _playerHP;
+
+
     public float winTime;
     public TMP_Text winTimer;
-
-    private PlayerMovement _playerHP;
     private float _timer;
+
 
     void Start()
     {
@@ -24,10 +29,10 @@ public class GameOver : MonoBehaviour
         float currentHP = _playerHP.playerHP;
         _timer -= Time.deltaTime;
 
-        winTimer.text = "Survive " + ((int)_timer) + " more seconds";
+        winTimer.text = "Survive " + ((int)_timer) + " more seconds"; // updating text on ui;
 
         if (currentHP <= 0) {
-            Application.Quit();
+            Application.Quit(); // Right now I'm closing the game, because I didn't have time to work on UI game end screen
         }
 
         if (_timer <= 0){

@@ -9,26 +9,28 @@ namespace NodeCanvas.Tasks.Actions {
 
 	public class A_SkeletonSpawn : ActionTask {
 
+		// Skeleton creation
 		public BBParameter<GameObject> skeletonPrefab;
-		public BBParameter<GameObject> particlesController;
 		public BBParameter<List<GameObject>> skeletonList;
 
-		public float spawnInteval = 0.5f;
-
+		// Field size
 		private Vector3 _spawnAreaMin = new Vector3(-10, 0, -10);
         private Vector3 _spawnAreaMax = new Vector3(10, 0, 10);
 
+		// Timer
+		public float spawnInteval = 0.5f;
 		private float _timer;
 
+		// Effect
+		public BBParameter<GameObject> particlesController;
 		protected override void OnExecute() {
 			_timer = 0f;
 
-			skeletonList.value.Clear();
+			skeletonList.value.Clear(); // clearing list everytime, to remove dead skeletons
 
 			particlesController.value.SetActive(true);
 		}
 
-		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			
 			_timer += Time.deltaTime;
@@ -38,13 +40,13 @@ namespace NodeCanvas.Tasks.Actions {
 			}
 
 			if (_timer >= spawnInteval) {
-				float x = Random.Range(_spawnAreaMin.x, _spawnAreaMax.x);
+				float x = Random.Range(_spawnAreaMin.x, _spawnAreaMax.x); // every skeleton must spawn from new random position on the screen, so i'm recalculating it every time
 				float z = Random.Range(_spawnAreaMin.z, _spawnAreaMax.z);
 
 				Vector3 spawnPoint = new Vector3(x, 1, z);
 
 				GameObject skeleton = UnityEngine.Object.Instantiate(skeletonPrefab.value, spawnPoint, Quaternion.identity);
-				skeletonList.value.Add(skeleton);
+				skeletonList.value.Add(skeleton); // adding them to the list in case that something will break, and this script will play one more time.
 
 				_timer = 0f;
 
@@ -58,7 +60,6 @@ namespace NodeCanvas.Tasks.Actions {
 
 		}
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
 			particlesController.value.SetActive(false);
 			

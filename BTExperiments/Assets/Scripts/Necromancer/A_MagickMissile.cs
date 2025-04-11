@@ -7,15 +7,13 @@ namespace NodeCanvas.Tasks.Actions {
 	public class A_MagickMissile : ActionTask<Transform> {
 
 		public BBParameter<GameObject> missilePrefab;
-		public BBParameter<float> spawnDelay;
 		public GameObject effect;
 
+
+		public BBParameter<float> spawnDelay;
 		private float _timer;
 
-		
-		//This is called once each time the task is enabled.
-		//Call EndAction() to mark the action as finished, either in success or failure.
-		//EndAction can be called from anywhere.
+
 		protected override void OnExecute() {
 
 			_timer = 0f;
@@ -25,20 +23,18 @@ namespace NodeCanvas.Tasks.Actions {
 
 		}
 
-		//Called once per frame while the action is active.
 		protected override void OnUpdate() {
 			
-			_timer += Time.deltaTime;
-			Vector3 spawnPosition = agent.transform.position + agent.forward;
+			_timer += Time.deltaTime; 
+			Vector3 spawnPosition = agent.transform.position + agent.forward; // giving a spawn point in front of the necromancer
 
 			if (_timer >= spawnDelay.value) {
-				GameObject missileBolt = UnityEngine.Object.Instantiate(missilePrefab.value, spawnPosition, Quaternion.identity);
+				GameObject missileBolt = UnityEngine.Object.Instantiate(missilePrefab.value, spawnPosition, Quaternion.identity); // creating missile
 				EndAction(true);
 			}
 
 		}
 
-		//Called when the task is disabled.
 		protected override void OnStop() {
 			effect.SetActive(false);
 		}
