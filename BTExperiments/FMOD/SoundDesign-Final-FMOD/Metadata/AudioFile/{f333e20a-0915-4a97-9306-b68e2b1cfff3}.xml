@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{f333e20a-0915-4a97-9306-b68e2b1cfff3}">
+		<property name="assetPath">
+			<value>Victor_Natas-Music.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>40.5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0e6db91b-3882-45d7-9370-4fa852f83d1c}</destination>
+		</relationship>
+	</object>
+</objects>
