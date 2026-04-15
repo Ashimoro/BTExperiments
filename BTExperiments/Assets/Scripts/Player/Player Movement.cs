@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
         _canControl = false; // removing control from the player, to not reset the velocity during knockback
         yield return new WaitForSeconds(knockbackTime);
         playerHP--;
-        _rb.velocity = Vector3.zero;
+        _rb.linearVelocity = Vector3.zero;
         _canControl = true;
     }
 
